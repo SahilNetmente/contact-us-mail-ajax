@@ -26,7 +26,7 @@ if (!$captcha) {
 //... The Captcha is valid you can continue with the rest of your code
 //... Add code to filter access using $response . score
 if ($response->success == true && $response->score <= 0.5) {
-    if (isset($_POST['userName']) && isset($_POST['email'])) {
+    if (isset($_POST['userName']) && !empty($_POST['userName']) && isset($_POST['email']) && !empty($_POST['email'])) {
         try {
             //Content
             $content = "<b>Name:</b> " . $_POST["userName"] . "<br>";
@@ -45,9 +45,8 @@ if ($response->success == true && $response->score <= 0.5) {
             }
 
             $from = $_POST["email"];
-            // $to = "sahil.sharma@netmente.com";
-            $to = "anjali.singh@auralogistics.net";
-            $subject = "Aura Logistics Form";
+            $to = "sahil.sharma@netmente.com";
+            $subject = "Contact Form";
             $message =  $content;
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
